@@ -12,11 +12,14 @@
     <tags></tags>
   </metadata>
   <parameters>
-    <parameter name = "Kubernetes Specification" type='multichoice' default='0,1,3' prompt = 'Select a k8s resource:' store = 'text'>
- 
-     <text  label = 'Project Title'
+    <parameter name="Project Title" type='text' prompt='The title of your application' >
+
+       <choice  label = 'Project Title'
              help = "Kubernetes Deployment template"
              value="project_title"/>
+
+    </parameter>
+    <parameter name = "Kubernetes Specification" type='multichoice' default='0,1,3' prompt='Select a k8s resource:' store='text'>
 
      <choice label = '&amp;Deployment'
              help = "Kubernetes Deployment template"
@@ -36,20 +39,20 @@
    </parameter>
   </parameters>
   <content>
-  <message>&#10;&#10;Scaffolding your Kubernetes Resources...&#10;&#10;&#10;</message>
-  <templatefile source='k8s_resources_deployment.yml'
-      destination='deployment.yml'
-      condition='$PLASTER_PARAM_Options -contains "Deployment"'/>
+  <message>'Scaffolding your Kubernetes Resources...'</message>
+  <templateFile source='k8s_resources_deployment.yml'
+      destination = 'deployment.yml'
+      condition = '$PLASTER_PARAM_Options -contains "Deployment"'/>
   
-   <templatefile source='k8s_resources_ingressroute.yml'
+   <templateFile source='k8s_resources_ingressroute.yml'
       destination='ingressroute.yml'
       condition='$PLASTER_PARAM_Options -contains "IngressRoute"'/>
    
-   <templatefile source='k8s_resources_ingress.yml'
+   <templateFile source='k8s_resources_ingress.yml'
       destination='deployment.yml'
       condition='$PLASTER_PARAM_Options -contains "Ingress"'/>
   
-   <templatefile source='k8s_resources_service.yml'
+   <templateFile source='k8s_resources_service.yml'
       destination='service.yml'
       condition='$PLASTER_PARAM_Options -contains "Service"'/>
   </content>
